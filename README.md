@@ -1,6 +1,7 @@
 # payments-sample
 Rest API for simple prepaid card
 
+java 8
 
 # 1. How to start the application ?
 It is simple just execute  ``mvn spring-boot:run``
@@ -11,6 +12,7 @@ No by default it uses in-memorry database but also it is easy just to change it 
 # 3. How to use the API ?
 
 ## User create
+curl -i -X POST -H "Content-Type:application/json" -d '{ "username":"user@payments.com", "password":"password" }' 'http://localhost:8080/users'
 ``curl -i -X POST \
    -H "Content-Type:application/json" \
    -d \
@@ -19,7 +21,8 @@ No by default it uses in-memorry database but also it is easy just to change it 
   "password":"password"
 }' \
  'http://localhost:8080/users'``
- 
+
+curl -i -X POST -H "Content-Type:application/json" -d '{ "username":"user@payments.com", "password":"password" }' 'http://localhost:8080/authorize'
 ## User authorize
 ``curl -i -X POST \
    -H "Content-Type:application/json" \
@@ -29,7 +32,7 @@ No by default it uses in-memorry database but also it is easy just to change it 
   "password":"password"
 }' \
  'http://localhost:8080/authorize'``
- 
+curl -i -X POST -H "Content-Type:application/json" H "Authorization:Bearer "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyQHBheW1lbnRzLmNvbSIsImF1ZCI6IkFVVEgiLCJpYXQiOjE2OTE5MzE1MzQsImlzcyI6IlBheW1lbnRzIiwiZXhwIjoxNjkxOTMzMzM0fQ.trloi5yOGfxjlmF270vwO1R28NczV925rFHZQy2zSMZu9Japh-Pa1cIsmdwwAbCXKe0X8imUhlFK1Rz396uSAA" -d '{ "currency":"GBP", "amount":5.5, "description":"Coffee" }' 'http://localhost:8080/payments/'
 ## Card create
 `` curl -i -X POST \
    -H "Content-Type:application/json" \
